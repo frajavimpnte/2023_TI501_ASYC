@@ -85,8 +85,15 @@ public class ComplexNumber {
         float angle = angle();
         
         return new ComplexNumber(
-                (float) (Math.pow(m, n) * Math.cos(angle)),
-                (float) (Math.pow(m, n) * Math.sin(angle))
+                (float) (Math.pow(m, n) * Math.cos(n*angle)),
+                (float) (Math.pow(m, n) * Math.sin(n*angle))
         );
     }
+
+    @Override
+    public String toString() {
+        return "ComplexNumber{" + "a=" + a + ", b=" + b + '}';
+    }
+    
+    
 }
