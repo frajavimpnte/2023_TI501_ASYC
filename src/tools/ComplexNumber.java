@@ -80,6 +80,7 @@ public class ComplexNumber {
     
     public static float angle(ComplexNumber z) {
         return (float) Math.atan2(z.b, z.a);
+        
     }
     
     public ComplexNumber toN(int n) {
@@ -101,11 +102,18 @@ public class ComplexNumber {
         for (int k = 0; k < n; k++) {
             roots.add(
                 new ComplexNumber(
-                    (float) ( Math.pow(modZ, 1.0/n) * Math.cos((th + k*2*Math.PI))),
-                    (float) ( Math.pow(modZ, 1.0/n) * Math.sin((th + k*2*Math.PI)))
+                    (float) ( Math.pow(modZ, 1.0/n) * Math.cos((th + k*2*Math.PI)/n)),
+                    (float) ( Math.pow(modZ, 1.0/n) * Math.sin((th + k*2*Math.PI)/n))
                     ));
         }
         return roots;
+    }
+    
+    public String toCIS() {
+        float modZ = mod();
+        float th = angle();
+        
+        return modZ +" CIS " + th*180/Math.PI;
     }
     
     @Override

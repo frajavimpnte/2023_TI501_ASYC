@@ -4,13 +4,36 @@
  */
 package tools;
 
+import java.util.List;
+
 /**
  *
  * @author TICS03
  */
 public class ComplexNumberTest {
     public static void main(String[] args) {
-        // TP01 P1
+        TP02_P5();
+    }
+    
+    public static void TP02_P5() {
+        
+        System.out.println("TP02_P5_a)");
+        ComplexNumber a = new ComplexNumber((float)( 2*Math.sqrt(3) ), -2 );
+        List<ComplexNumber> list = a.rootN(2);
+        printArrayList(list);
+        
+        System.out.println("TP02_P5_d)");
+        ComplexNumber d = new ComplexNumber(0, -16 );
+        list = d.rootN(4);
+        printArrayList(list);
+    }
+    public static void printArrayList(List<ComplexNumber> list) {
+        for ( ComplexNumber cn:list ) {
+            System.out.println(cn.toCIS());
+        }
+    }
+    public static void TP01_P1() {
+    // TP01 P1
         ComplexNumber a0 = new ComplexNumber(-1, 2);
         System.out.println("a0: " + a0);
         
