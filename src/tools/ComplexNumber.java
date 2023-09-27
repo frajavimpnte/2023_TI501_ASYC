@@ -4,6 +4,8 @@
  */
 package tools;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author TICS03
@@ -90,6 +92,22 @@ public class ComplexNumber {
         );
     }
 
+    public ArrayList<ComplexNumber> rootN(int n) {
+        ArrayList<ComplexNumber> roots = new ArrayList<>();
+        
+        float modZ = mod();
+        float th = angle();
+        
+        for (int k = 0; k < n; k++) {
+            roots.add(
+                new ComplexNumber(
+                    (float) ( Math.pow(modZ, 1.0/n) * Math.cos((th + k*2*Math.PI))),
+                    (float) ( Math.pow(modZ, 1.0/n) * Math.sin((th + k*2*Math.PI)))
+                    ));
+        }
+        return roots;
+    }
+    
     @Override
     public String toString() {
         return "ComplexNumber{" + "a=" + a + ", b=" + b + '}';
