@@ -1,6 +1,7 @@
 package tools;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 /*
@@ -13,12 +14,15 @@ import java.awt.Graphics2D;
  * @author TICS03
  */
 public class MapZtoW extends javax.swing.JFrame {
-
+    TP02_Problem07 problem = new TP02_Problem07(); 
     /**
      * Creates new form MapZtoW
      */
     public MapZtoW() {
         initComponents();
+        
+        problem.initZ();
+        problem.computeW();
     }
 
     /**
@@ -117,10 +121,42 @@ public class MapZtoW extends javax.swing.JFrame {
         } 
     }
     
+    private void drawZ() {
+         Graphics2D g = (Graphics2D) pnlDrawZ.getGraphics();
+         
+         Font sanSerifFont = new Font("SanSerif", Font.PLAIN, 14);
+         g.setFont(sanSerifFont);
+         
+         g.setColor(Color.white);
+         for(ComplexNumber c:problem.z) {
+             g.drawString("o",
+                     Coordinate.toScreenX( c.getA() ),
+                     Coordinate.toScreenX( c.getB() ) 
+             );
+         }
+    }
+    
+      private void drawW() {
+         Graphics2D g = (Graphics2D) pnlDrawW.getGraphics();
+         
+         Font sanSerifFont = new Font("SanSerif", Font.PLAIN, 14);
+         g.setFont(sanSerifFont);
+         
+         g.setColor(Color.white);
+         for(ComplexNumber c:problem.z) {
+             g.drawString("o",
+                     Coordinate.toScreenX( c.getA() ),
+                     Coordinate.toScreenX( c.getB() ) 
+             );
+         }
+    }
+    
     private void btnDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrawActionPerformed
         // TODO add your handling code here:
         drawAxis(pnlDrawZ);
         drawAxis(pnlDrawW);
+        
+        drawZ();
     }//GEN-LAST:event_btnDrawActionPerformed
 
     /**
@@ -134,7 +170,7 @@ public class MapZtoW extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
