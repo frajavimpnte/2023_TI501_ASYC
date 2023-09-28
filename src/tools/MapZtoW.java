@@ -128,11 +128,13 @@ public class MapZtoW extends javax.swing.JFrame {
          g.setFont(sanSerifFont);
          
          g.setColor(Color.white);
+         int i = 0;
          for(ComplexNumber c:problem.z) {
-             g.drawString("o",
+             g.drawString("o z"+i,
                      Coordinate.toScreenX( c.getA() ),
                      Coordinate.toScreenX( c.getB() ) 
              );
+             i++;
          }
     }
     
@@ -143,11 +145,13 @@ public class MapZtoW extends javax.swing.JFrame {
          g.setFont(sanSerifFont);
          
          g.setColor(Color.white);
-         for(ComplexNumber c:problem.z) {
-             g.drawString("o",
+         int i = 0;
+         for(ComplexNumber c:problem.w) {
+             g.drawString("x w"+i,
                      Coordinate.toScreenX( c.getA() ),
                      Coordinate.toScreenX( c.getB() ) 
              );
+             i++;
          }
     }
     
@@ -157,6 +161,7 @@ public class MapZtoW extends javax.swing.JFrame {
         drawAxis(pnlDrawW);
         
         drawZ();
+        drawW();
     }//GEN-LAST:event_btnDrawActionPerformed
 
     /**
