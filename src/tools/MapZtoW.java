@@ -14,7 +14,8 @@ import java.awt.Graphics2D;
  * @author TICS03
  */
 public class MapZtoW extends javax.swing.JFrame {
-    TP02_Problem07 problem = new TP02_Problem07(); 
+    TP02_Problem07 problem = new TP02_Problem07();
+    TP02_Problem07d problemD = new TP02_Problem07d();
     /**
      * Creates new form MapZtoW
      */
@@ -23,6 +24,9 @@ public class MapZtoW extends javax.swing.JFrame {
         
         problem.initZ();
         problem.computeW();
+        
+        problemD.initZ();
+        problemD.computeW();
     }
 
     /**
@@ -129,8 +133,9 @@ public class MapZtoW extends javax.swing.JFrame {
          
          g.setColor(Color.white);
          int i = 0;
-         for(ComplexNumber c:problem.z) {
-             g.drawString("o z"+i,
+         for(ComplexNumber c:problemD.z) {
+             //g.drawString("o z"+i,
+             g.drawString(".",
                      Coordinate.toScreenX( c.getA() ),
                      Coordinate.toScreenX( c.getB() ) 
              );
@@ -146,8 +151,9 @@ public class MapZtoW extends javax.swing.JFrame {
          
          g.setColor(Color.white);
          int i = 0;
-         for(ComplexNumber c:problem.w) {
-             g.drawString("x w"+i,
+         for(ComplexNumber c:problemD.w) {
+             //g.drawString("x"+i,
+             g.drawString(".",
                      Coordinate.toScreenX( c.getA() ),
                      Coordinate.toScreenX( c.getB() ) 
              );
