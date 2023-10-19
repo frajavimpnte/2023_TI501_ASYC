@@ -123,7 +123,12 @@ public class GraphicsXY extends javax.swing.JFrame {
     }
     
     private void drawFunction(int N) {
-        SquaredFunction sf = new SquaredFunction(1.0f, 100);
+        //SquaredFunction sf = new SquaredFunction(1.0f, 100);
+                
+        //sf.computeTime();
+        //sf.computeSerie(N);
+        
+        TP02_15_triangular sf = new TP02_15_triangular((float)(2*Math.PI), 100);
                 
         sf.computeTime();
         sf.computeSerie(N);
