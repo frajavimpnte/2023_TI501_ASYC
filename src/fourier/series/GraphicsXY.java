@@ -128,8 +128,9 @@ public class GraphicsXY extends javax.swing.JFrame {
         //sf.computeTime();
         //sf.computeSerie(N);
         
-        TP02_15_triangular sf = new TP02_15_triangular((float)(2*Math.PI), 100);
-                
+        //TP02_15_triangular sf = new TP02_15_triangular((float)(2*Math.PI), 100);
+        
+        TP03_P2_func01 sf = new TP03_P2_func01(2, 100);
         sf.computeTime();
         sf.computeSerie(N);
         
