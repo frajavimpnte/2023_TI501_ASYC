@@ -1,10 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * ITESS-TICS
+ * ASYSC
+ * Agosto-Diciembre 2023
+ * Descripsión: Transforma coordenadas reales coordenadas SCREEN
+ * Autor: FJMP & TI501
+ * Fecha: 09/noviembre/2023
+ * email: 
  */
 package fourier.transform;
-
-import fourier.series.*;
 
 /**
  *
