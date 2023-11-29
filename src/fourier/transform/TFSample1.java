@@ -19,7 +19,7 @@ public class TFSample1 extends TFAbstract {
         super(wPoints);
     }
     public void computeFw() {
-        float a = 1;
+        float a = 1.0f;
         for (int i = 0; i < wPoints; i++) {
            
             Fw[i] = new ComplexNumber(

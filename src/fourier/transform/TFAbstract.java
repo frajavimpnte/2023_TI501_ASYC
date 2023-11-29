@@ -21,6 +21,20 @@ public abstract class  TFAbstract {
     protected float FwMod[];
     protected float FwPhase[];
     
+    protected float wMIN;
+    protected float wMAX;
+    
+    protected float FwRealMIN;
+    protected float FwRealMAX;
+    protected float FwImagMIN;
+    protected float FwImagMAX;
+    
+    protected float FwModMIN;
+    protected float FwModMAX;
+    
+    protected float FwPhaseMIN;
+//    protected float FwPhaseMAX;
+    
     public TFAbstract(int wPoints) {
         this.wPoints = wPoints;
         w = new float[wPoints];
@@ -49,7 +63,7 @@ public abstract class  TFAbstract {
     
     public abstract void computeFw();
 
-    public int getwPoints() {
+    public int getWPoints() {
         return wPoints;
     }
 
