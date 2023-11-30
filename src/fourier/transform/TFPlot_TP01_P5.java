@@ -18,18 +18,18 @@ import java.awt.Stroke;
  *
  * @author TICS03
  */
-public class TFPlot extends javax.swing.JFrame {
+public class TFPlot_TP01_P5 extends javax.swing.JFrame {
     Coordinate coorFw;
     Coordinate coorFwMod;
     Coordinate coorFwPhase;
     
-    TFSample1 tf1;
+    TFSample_TP01_P5 tf1;
 
     // plot colors:
     private final Color plotBkgColor = new Color(75, 75, 75);
     private final Color plotStrkeColor = new Color(245, 102, 66);
     private final Stroke plotStroke = new BasicStroke((float) 3.0);
-    public TFPlot() {
+    public TFPlot_TP01_P5() {
         initComponents();  
     }
 
@@ -157,7 +157,7 @@ public class TFPlot extends javax.swing.JFrame {
     // Fourier Tranform Computation
     private void computeData(int wPoints) {
         // compute data points
-        tf1 = new TFSample1(wPoints);
+        tf1 = new TFSample_TP01_P5(wPoints);
         tf1.computeW();
         tf1.computeFw();
         tf1.computeFwMod();
@@ -168,7 +168,7 @@ public class TFPlot extends javax.swing.JFrame {
        
         //1.  Fw: Plot FourierTransform
         //1a. Define proper coodinate range
-        coorFw = new Coordinate(-2,2,-2,2, 
+        coorFw = new Coordinate(-0.5f,0.5f,-0.5f,0.5f, 
                 pnlDrawFw.getWidth(), pnlDrawFw.getWidth());
         
         //1b.  Get data, complex numbers
@@ -327,14 +327,38 @@ public class TFPlot extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TFPlot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TFPlot_TP01_P5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TFPlot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TFPlot_TP01_P5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TFPlot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TFPlot_TP01_P5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TFPlot.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TFPlot_TP01_P5.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -347,7 +371,7 @@ public class TFPlot extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TFPlot().setVisible(true);
+                new TFPlot_TP01_P5().setVisible(true);
             }
         });
     }
