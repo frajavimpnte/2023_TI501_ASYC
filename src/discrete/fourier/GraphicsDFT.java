@@ -1,12 +1,14 @@
 /* ITESS-TICS
  * Semestre Agosto-Diciembre 2023 
  * ANSYSC
- * Tema 2 Series de Fourier
+ * Tema 4 Señales discretas
  * By FJMP
  * 28/09/2023
  */
-package fourier.series;
+package discrete.fourier;
 
+import discrete.system.*;
+import fourier.series.*;
 import tools.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -15,9 +17,9 @@ import java.awt.Graphics2D;
  *
  * @author TICS03
  */
-public class GraphicsXY extends javax.swing.JFrame {
+public class GraphicsDFT extends javax.swing.JFrame {
    
-    public GraphicsXY() {
+    public GraphicsDFT() {
         initComponents();        
     }
 
@@ -32,8 +34,10 @@ public class GraphicsXY extends javax.swing.JFrame {
 
         pnlDraw = new javax.swing.JPanel();
         btnDraw = new javax.swing.JButton();
-        lbNaprox = new javax.swing.JLabel();
-        tfNAproximation = new javax.swing.JTextField();
+        lbNpoints = new javax.swing.JLabel();
+        tfNpoints = new javax.swing.JTextField();
+        lblSampleTime = new javax.swing.JLabel();
+        tfSampleTime = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,16 +70,22 @@ public class GraphicsXY extends javax.swing.JFrame {
         });
         getContentPane().add(btnDraw, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, -1, -1));
 
-        lbNaprox.setText("N aproximation");
-        getContentPane().add(lbNaprox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
+        lbNpoints.setText("Numero de puntos:");
+        getContentPane().add(lbNpoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
-        tfNAproximation.setText("1");
-        tfNAproximation.addActionListener(new java.awt.event.ActionListener() {
+        tfNpoints.setText("1");
+        tfNpoints.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNAproximationActionPerformed(evt);
+                tfNpointsActionPerformed(evt);
             }
         });
-        getContentPane().add(tfNAproximation, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 50, -1));
+        getContentPane().add(tfNpoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 70, 60, -1));
+
+        lblSampleTime.setText("Tiempo de muestreo:");
+        getContentPane().add(lblSampleTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        tfSampleTime.setText("0.1");
+        getContentPane().add(tfSampleTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
 
         setBounds(0, 0, 656, 488);
     }// </editor-fold>//GEN-END:initComponents
@@ -123,56 +133,72 @@ public class GraphicsXY extends javax.swing.JFrame {
         } 
     }
     
-    private void drawFunction(int N) {
-        //SquaredFunction sf = new SquaredFunction(1.0f, 100);
-                
-        //sf.computeTime();
-        //sf.computeSerie(N);
+    private void drawFunction(int nPoints, float ts) {
+        // discrete signal
+        DiscreteFunctionTP01a sf = new DiscreteFunctionTP01a (ts, nPoints);
+        sf.compute();
         
-        //TP02_15_triangular sf = new TP02_15_triangular((float)(2*Math.PI), 100);
+        // dft
+        DFT dft = new DFT(sf.getSamplesNumber(), sf.getSamplingTime(),
+                sf.getSignal());
+        dft.compute();
         
-        TP03_P2_func01 sf = new TP03_P2_func01(2, 100);
-        sf.computeTime();
-        sf.computeSerie(N);
+        ComplexNumber cn[] = dft.getFw();
         
-        float x[] = sf.getTime();
-        float y[] = sf.getSerie();
+        float x[] = new float[cn.length];
+        float y[] = new float[cn.length];
+        
+        for (int i = 0; i < cn.length; i++) {
+            x[i] = cn[i].getA();
+            x[i] = cn[i].getB();
+        }
       
 
         // Draw function points
          Graphics2D g = (Graphics2D) pnlDraw.getGraphics();
          g.setColor(Color.white);         
-         for (int i = 0; i < x.length - 1; i++) {
+         for (int i = 0; i < x.length; i++) {
+             /*
              g.drawLine(
                 Coordinate.toScreenX(x[i]),
-                Coordinate.toScreenY(y[i]),
-                Coordinate.toScreenX(x[i+1]),
-                Coordinate.toScreenY(y[i+1])
+                Coordinate.toScreenY(0),
+                Coordinate.toScreenX(x[i]),
+                Coordinate.toScreenY(y[i])
             );
+             */
+            g.drawString("o", 
+                    Coordinate.toScreenX(x[i]), 
+                    Coordinate.toScreenY(y[i]));
          }
     }
     
     private void pnlDrawMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlDrawMouseClicked
         // TODO add your handling code here:
         int Naprox =  Integer.parseInt( 
-                tfNAproximation.getText()
+                tfNpoints.getText()
+            );
+        float ts = Float.parseFloat(
+                tfSampleTime.getText()
             );
         drawAxis();
-        drawFunction(Naprox);
+        drawFunction(Naprox, ts);
     }//GEN-LAST:event_pnlDrawMouseClicked
 
     private void btnDrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDrawActionPerformed
         // TODO add your handling code here:
         int Naprox =  Integer.parseInt( 
-                tfNAproximation.getText()
+                tfNpoints.getText()
+            );
+         float ts = Float.parseFloat(
+                tfSampleTime.getText()
             );
         drawAxis();
-        drawFunction(Naprox);
+        drawFunction(Naprox, ts);
     }//GEN-LAST:event_btnDrawActionPerformed
 
-    private void tfNAproximationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNAproximationActionPerformed
+    private void tfNpointsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNpointsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfNAproximationActionPerformed
+    }//GEN-LAST:event_tfNpointsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,29 +217,45 @@ public class GraphicsXY extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GraphicsXY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphicsDFT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GraphicsXY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphicsDFT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GraphicsXY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphicsDFT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GraphicsXY.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GraphicsDFT.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GraphicsXY().setVisible(true);
+                new GraphicsDFT().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDraw;
-    private javax.swing.JLabel lbNaprox;
+    private javax.swing.JLabel lbNpoints;
+    private javax.swing.JLabel lblSampleTime;
     private javax.swing.JPanel pnlDraw;
-    private javax.swing.JTextField tfNAproximation;
+    private javax.swing.JTextField tfNpoints;
+    private javax.swing.JTextField tfSampleTime;
     // End of variables declaration//GEN-END:variables
 }
