@@ -73,7 +73,7 @@ public class GraphicsDFT extends javax.swing.JFrame {
         lbNpoints.setText("Numero de puntos:");
         getContentPane().add(lbNpoints, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, -1, -1));
 
-        tfNpoints.setText("1");
+        tfNpoints.setText("10");
         tfNpoints.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfNpointsActionPerformed(evt);
@@ -85,6 +85,7 @@ public class GraphicsDFT extends javax.swing.JFrame {
         getContentPane().add(lblSampleTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
 
         tfSampleTime.setText("0.1");
+        tfSampleTime.setPreferredSize(new java.awt.Dimension(100, 22));
         getContentPane().add(tfSampleTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
 
         setBounds(0, 0, 656, 488);
@@ -150,7 +151,7 @@ public class GraphicsDFT extends javax.swing.JFrame {
         
         for (int i = 0; i < cn.length; i++) {
             x[i] = cn[i].getA();
-            x[i] = cn[i].getB();
+            y[i] = cn[i].getB();
         }
       
 

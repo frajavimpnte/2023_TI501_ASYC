@@ -11,10 +11,10 @@ import fourier.series.*;
  * @author TICS03
  */
 public class Coordinate {
-    public static final float XMIN = -2.0f;
-    public static final float XMAX = 2.0f;
-    public static final float YMIN = -2.0f;
-    public static final float YMAX = 2.0f;
+    public static final float XMIN = -0.5f;
+    public static final float XMAX = 0.5f;
+    public static final float YMIN = -0.5f;
+    public static final float YMAX = 0.5f;
     
     public static final float XSCREEN = 300;
     public static final float YSCREEN = 300; 
